@@ -10,5 +10,5 @@ app.use(cors());
 app.post('/authorize', functions.authorize);
 app.post('/search', functions.search);
  app.post('/user', functions.user);
-
+app.post('/update', functions.update);
 app.listen(3000);

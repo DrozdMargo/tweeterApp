@@ -7,10 +7,11 @@ import { Http, Headers} from '@angular/http';
   // styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  title = 'Twitter Rest Api';
   searchquery = '';
   tweetsdata;
-
+  userdata;
+searchname;
   constructor(private http: Http) {
   }
 
@@ -37,11 +38,23 @@ export class AppComponent {
 
   usercall(){
     var headers = new Headers();
-    var searchterm = 'screenname=Yasmin_Payne1';
+    var searchterm = 'screenname=' + this.searchname;
 
     headers.append('Content-Type', 'application/X-www-form-urlencoded');
 
     this.http.post('http://localhost:3000/user', searchterm, {headers: headers}).subscribe((res) => {
+      console.log(res.json().data);
+      this.userdata = res.json().data;
+
+    });
+  }
+  update(){
+    var headers = new Headers();
+    var searchterm = 'status=jghirtu';
+
+    headers.append('Content-Type', 'application/X-www-form-urlencoded');
+
+    this.http.post('http://localhost:3000/update', searchterm, {headers: headers}).subscribe((res) => {
       console.log(res.json().data);
 
     });

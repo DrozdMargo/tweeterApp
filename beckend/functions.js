@@ -45,8 +45,25 @@ functions = {
         res.json({success: true, data:JSON.parse(body.body)});
       }
     })
+  },
+
+  update: function(req, res) {
+    var searchquery = req.body.status;
+    var encsearchquery = encodeURIComponent(searchquery);
+    var bearerheader = 'Bearer ' + config.bearertoken;
+    request.post('https://api.twitter.com/1.1/statuses/update?status=jghirtu', {form: {'grant_type': 'client_credentials'},
+      headers: {Authorization: bearerheader}}, function(error, response, body) {
+      if(error)
+        console.log(error);
+      else {
+        //console.log(body);
+        console.log(res.json({success: true, data:JSON.parse(body).status}));
+        //res.json({success: true, data:JSON.parse(body.body)});
+      }
+    })
   }
 
 }
 
 module.exports = functions;
+

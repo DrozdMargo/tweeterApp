@@ -1,35 +1,76 @@
-<h1>
-  {{title}}
-</h1>
+<div class="row">
+  <div class="col s12">
+    <div class="col s6 offset-s3">
+      <h1>
+        {{title}}
+      </h1>
+      <button class="waves-effect waves-light btn " (click)="makeCall()">Authorize</button>
+      <div class="row">
+      <form class="col s6">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="hashtags" type="text" [(ngModel)]="searchquery" [ngModelOptions]="{standalone: true}">
+            <label for="hashtags">Search by hashtags</label>
+          </div>
+        </div>
+        <button class="waves-effect waves-light btn" (click)="searchCall()">Search</button>
+        <div *ngFor="let item of tweetsdata" class="col s12 m7">
+          <div class="card">
+            <div class="card-image">
+              <img style={width:10px;height:10px;} src={{item.user.profile_image_url}}>
+            </div>
+            <div class="right-content">
+              <span class="card-title">{{item.user.name}}</span>
+              <div class="card-content">
+                <p>{{item.text}}</p>
+              </div>
+              <div class="card-action">
+                <a href="#">This is a link</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      </div>
 
 
-<button class="waves-effect waves-light btn" (click)="makeCall()">Authorize</button>
+      <div class="row">
+        <form class="col s6">
+
+
+          <div class="input-field col s12">
+            <input id="username" type="text" [(ngModel)]="searchname" [ngModelOptions]="{standalone: true}">
+            <label for="username">Search by screen_name</label>
+          </div>
+          <button class="waves-effect waves-light btn" (click)="usercall()">User Timeline</button>
+          <div *ngFor="let u of userdata" class="col s12 m7">
+            <div class="card">
+              <div class="card-image">
+                <img style={width:10px;height:10px;} src={{u.user.profile_image_url}}>
+              </div>
+              <div class="right-content">
+                <span class="card-title">{{u.user.screen_name}}</span>
+                <div class="card-content">
+                  <p>{{u.user.text}}</p>
+                </div>
+                <div class="card-action">
+                  <a href="#">This is a link</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 
 <div class="row">
-  <form class="col s4">
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="hashtags" type="text" [(ngModel)]="searchquery" [ngModelOptions]="{standalone: true}">
-        <label for="hashtags">Search by hashtags</label>
-      </div>
-    </div>
-    <button class="waves-effect waves-light btn" (click)="searchCall()">Search</button>
-    <div *ngFor="let item of tweetsdata" class="col s12 m7">
-      <div class="card">
-        <div class="card-image">
-          <img style={width:10px;height:10px;} src={{item.user.profile_image_url}}>
-        </div>
-        <div class="right-content">
-          <span class="card-title">{{item.user.name}}</span>
-          <div class="card-content">
-            <p>{{item.text}}</p>
-          </div>
-          <div class="card-action">
-            <a href="#">This is a link</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
+
 </div>
-<button class="waves-effect waves-light btn" (click)="usercall()">User Timeline</button>
+
+
+
+<!--<button class="waves-effect waves-light btn" (click)="update()">update</button>-->

@@ -19,7 +19,7 @@ export class AppComponent {
 
     headers.append('Content-Type', 'application/X-www-form-urlencoded');
 
-    this.http.post('http://localhost:3000/authorize', {headers: headers}).subscribe((res) => {
+    this.http.post('http://localhost:3000/twitter', {headers: headers}).subscribe((res) => {
       console.log(res);
     })
   }
@@ -30,20 +30,23 @@ export class AppComponent {
 
     headers.append('Content-Type', 'application/X-www-form-urlencoded');
 
-    this.http.post('http://localhost:3000/search', searchterm, {headers: headers}).subscribe((res) => {
-      this.tweetsdata = res.json().data.statuses;
+    this.http.post('http://localhost:3000/post', searchterm, {headers: headers}).subscribe((res) => {
+      this.tweetsdata = res.json().data;
+      console.log(this.tweetsdata);
     });
   }
 
   usercall(){
     var headers = new Headers();
-    var searchterm = 'screenname=Yasmin_Payne1';
+    // var searchterm = 'screenname=Yasmin_Payne1';
 
     headers.append('Content-Type', 'application/X-www-form-urlencoded');
 
-    this.http.post('http://localhost:3000/user', searchterm, {headers: headers}).subscribe((res) => {
+    this.http.post('http://localhost:3000/twitter',  {headers: headers}).subscribe((res) => {
       console.log(res.json().data);
 
     });
   }
+
+
 }

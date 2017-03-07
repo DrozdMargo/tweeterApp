@@ -2,39 +2,49 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 //var functions = require('./twit');
- var twitter = require('./twit');
+ //var twitter = require('./twit');
 //var router = require('./router');
 var app = express();
+var Twitter = require('twitter');
+
+var client = new Twitter({
+  consumer_key: '1E04M7YyXM3QRE2MbTb4t1fYZ',
+  consumer_secret: 'gWNMzAnZUhhXhnMwRpAcHowb2nrGTeRofZ2urgQHqKAWwH56c6',
+  access_token_key: '798613288271704064-2d11zgrr0jmYEQ8QJCTtTRBzMGzyBuT',
+  access_token_secret: '2rSW8fbTzUrx39EWOZ6xbb5MZHhujmhBWjJWrv2OQmVEn'
+});
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 
+app.post("/search", function ( req, res) {
 
+  client.get('search/tweets', {q: req.body.query}, function (error, tweets) {
+    res.json({
+      data: tweets
 
-app.post("/post", function (req, res) {
-  twitter.getTimeLine(function (error, tweets) {
-      res.json({
-        data: tweets
-      });
+    });
   });
 });
+// app.post("/favorites", function (req, res) {
+//   twitter.getFavorites(function (error, tweets) {
+//     res.json({
+//       data: tweets
+//     });
+//   });
+// });
 
-//
-// app.post('/search',  require('./router.js'));
-// app.get('/user',  require('./router.js'));
 
+app.post("/update", function (req, res) {
 
-// app.post('/search', functions.search);
-
+  client.post('statuses/update', {status: req.body.status}, function (error, tweets) {
+    res.json({
+      data: tweets
+    });
+  });
+});
 
 app.listen(3000);
 
 
-// var express = require('express');
-// var app = express();
-//
-// // respond with "hello world" when a GET request is made to the homepage
-// app.get('/', function (req, res) {
-//   res.send('hello world')
-// });
-// app.listen(3000);

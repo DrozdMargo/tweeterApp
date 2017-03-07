@@ -11,11 +11,11 @@ var client = new Twitter({
 var params = {screen_name: 'margo_drozd'};
 
 // var querysearch = require('/');
- var query = 'body';
+var query = 'body';
 
 module.exports.getTimeLine = function (callback) {
   client.get('statuses/user_timeline', params, function (error, tweets, response) {
-      callback(error, tweets);
+    callback(error, tweets);
   });
 
 };
@@ -28,12 +28,19 @@ module.exports.getFavorites = function (callback) {
 };
 
 module.exports.getSearch = function (callback ) {
+  // console.log(ServerResponse);
+  // console.log(req);
+  // var searchquery = req.body.query;
+  // var encsearchquery = encodeURIComponent(searchquery);
+  //var query = querysearch;
+// console.log(query);
 
   client.get('search/tweets', {q: query}, function(error, tweets, response, request) {
     // console.log(request);
     callback(error, tweets);
     // console.log(query);
   });
+
 };
 
 module.exports.postTweet = function (callback) {

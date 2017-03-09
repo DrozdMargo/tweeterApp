@@ -27,7 +27,7 @@ app.post("/search", function ( req, res) {
     });
   });
 });
-app.post("/favorites", function (req, res) {
+app.get("/favorites", function (req, res) {
   client.get('favorites/list',  function (error, tweets) {
     res.json({
       data: tweets

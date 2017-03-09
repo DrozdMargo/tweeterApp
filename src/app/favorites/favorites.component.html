@@ -1,8 +1,8 @@
 <form class="col">
   <div class="col s12">
-    <button class="waves-effect waves-light btn btn-favorite-list" type="submit" (click)="favoritesCall()">Get favorites tweets</button>
+    <button class="waves-effect waves-light btn btn-favorite-list" type="submit" >Get favorites tweets</button>
     <div class="favorite-list">
-      <div *ngFor="let f of tweetslist" class="col s12">
+       <div *ngFor="let f of tweets" class="col s12">
         <div class="card">
           <div class="card-image">
             <img class="tweets-image"  src={{f.user.profile_image_url}}>

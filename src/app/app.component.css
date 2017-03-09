@@ -1,0 +1,17 @@
+/*.tweets-image {*/
+  /*width:20px !important;*/
+  /*height: 20px !important;*/
+/*}*/
+/*.favorite-list {*/
+  /*width: 200px;*/
+  /*max-width: 200px;*/
+/*}*/
+.btn-favorite-list {
+  margin-top:50px;
+}
+h1 {
+  color: #26a69a;
+}
+form {
+  width:100%;
+}

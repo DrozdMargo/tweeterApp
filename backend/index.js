@@ -27,18 +27,28 @@ app.post("/search", function ( req, res) {
     });
   });
 });
-// app.post("/favorites", function (req, res) {
-//   twitter.getFavorites(function (error, tweets) {
-//     res.json({
-//       data: tweets
-//     });
-//   });
-// });
+app.post("/favorites", function (req, res) {
+  client.get('favorites/list',  function (error, tweets) {
+    res.json({
+      data: tweets
+
+    });
+  });
+});
 
 
 app.post("/update", function (req, res) {
 
   client.post('statuses/update', {status: req.body.status}, function (error, tweets) {
+    res.json({
+      data: tweets
+    });
+  });
+});
+
+app.post("/timeline", function (req, res) {
+
+  client.get('statuses/user_timeline', {screen_name: req.body.name}, function (error, tweets) {
     res.json({
       data: tweets
     });

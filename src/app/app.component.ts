@@ -4,7 +4,7 @@ import { Http, Headers} from '@angular/http';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  // styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'Twitter Rest Api';
@@ -15,6 +15,8 @@ export class AppComponent {
   userpost;
   searchdata;
   updatestatus;
+  tweetslist;
+  timeline;
   constructor(private http: Http) {
   }
 
@@ -59,17 +61,30 @@ export class AppComponent {
 
   favoritesCall() {
     var headers = new Headers();
-    var searchterm = 'query=' + this.searchquery;
+    // var searchterm = 'query=' + this.searchquery;
 
     headers.append('Content-Type', 'application/X-www-form-urlencoded');
 
-    this.http.post('http://localhost:3000/favorites', searchterm, {headers: headers}).subscribe((res) => {
-      this.tweetsdata = res.json().data;
-      // console.log(this.tweetsdata);
+    this.http.post('http://localhost:3000/favorites',  {headers: headers}).subscribe((res) => {
+      this.tweetslist = res.json().data;
+      console.log(this.tweetslist);
+
     });
 
   }
 
+  usercall() {
+    var headers = new Headers();
+    var searchname = 'query=' + this.searchname;
+
+    headers.append('Content-Type', 'application/X-www-form-urlencoded');
+
+    this.http.post('http://localhost:3000/timeline', searchname, {headers: headers}).subscribe((res) => {
+      this.timeline = res.json().data;
+      console.log(this.timeline);
+    });
+
+  }
 
 }
 

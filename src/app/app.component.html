@@ -5,48 +5,75 @@
         {{title}}
       </h1>
       <!--<button class="waves-effect waves-light btn " (click)="makeCall()">Authorize</button>-->
+
+
       <div class="row">
-      <form class="col">
-        <div class="row">
+        <div class="col s6">
+
+
+        <form class="col">
           <div class="input-field col s12">
             <input id="hashtags" type="text" [(ngModel)]="searchquery" [ngModelOptions]="{standalone: true}">
             <label for="hashtags">Search by hashtags</label>
-          </div>
-        </div>
-        <button class="waves-effect waves-light btn" (click)="searchCall()">Search</button>
+
+          <button class="waves-effect waves-light btn" (click)="searchCall()">Search</button>
 
 
-        <div *ngFor="let i of searchdata" class="col s12 m7">
-          <div class="card">
-            <div class="card-image">
-              <img style={width:10px;height:10px;} src={{i.user.profile_image_url}}>
-            </div>
-            <div class="right-content">
-              <!--<span class="card-title">{{item.user.name}}</span>-->
-              <div class="card-content">
-                <p>{{i.text}}</p>
-                <span>{{i.created_at}}</span>
+          <div *ngFor="let i of searchdata" class="col s12">
+            <div class="card">
+              <div class="card-image">
+                <img src={{i.user.profile_image_url}}>
               </div>
-              <div class="card-action">
-                <a href="#">{{i.source}}</a>
+              <div class="right-content">
+                <!--<span class="card-title">{{item.user.name}}</span>-->
+                <div class="card-content">
+                  <p>{{i.text}}</p>
+                  <span>{{i.created_at}}</span>
+                </div>
+                <div class="card-action">
+                  <a href="#">{{i.source}}</a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </form>
-      </div>
+          </div>
+        </form>
+        <form class="col">
+          <div class="input-field col s12">
+            <input id="h" type="text" [(ngModel)]="updatestatus" [ngModelOptions]="{standalone: true}">
+            <label for="h">enter tweet for update status</label>
 
 
-      <div class="row">
-        <form class="col s6">
+            <button class="waves-effect waves-light btn" (click)="update()">update</button>
 
+            <!--<div *ngFor="let i of userpost" class="col s12">-->
+              <!--<div class="card">-->
+                <!--<div class="card-image">-->
+                  <!--<img style={width:10px;height:10px;} src={{i.user.profile_image_url}}>-->
+                <!--</div>-->
+                <!--<div class="right-content">-->
+                  <!--<span class="card-title">{{i.user.name}}</span>-->
+                  <!--<div class="card-content">-->
+                    <!--<p>{{i.text}}</p>-->
+                    <!--<span>{{i.created_at}}</span>-->
+                  <!--</div>-->
+                  <!--<div class="card-action">-->
+                    <!--<a href="#">This is a link</a>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
 
+          </div>
+        </form>
+        <form class="col">
           <div class="input-field col s12">
             <input id="username" type="text" [(ngModel)]="searchname" [ngModelOptions]="{standalone: true}">
             <label for="username">Search by screen_name</label>
-          </div>
-          <button class="waves-effect waves-light btn" (click)="usercall()">User Timeline</button>
-          <div *ngFor="let u of userdata" class="col s12 m7">
+
+
+          <button class="waves-effect waves-light btn " (click)="usercall()">User Timeline</button>
+          <div *ngFor="let u of timeline" class="col s12">
             <div class="card">
               <div class="card-image">
                 <img style={width:10px;height:10px;} src={{u.user.profile_image_url}}>
@@ -54,70 +81,53 @@
               <div class="right-content">
                 <span class="card-title">{{u.user.screen_name}}</span>
                 <div class="card-content">
-                  <p>{{u.user.text}}</p>
+                  <p>{{u.text}}</p>
                 </div>
                 <div class="card-action">
-                  <a href="#">This is a link</a>
+                  <a href="#">{{u.user.url}}</a>
                 </div>
               </div>
             </div>
           </div>
+          </div>
+
+        </form>
+        <form class="col">
+    <div class="col s12">
+          <button class="waves-effect waves-light btn btn-favorite-list" (click)="favoritesCall()">Get favorites tweets</button>
+          <div class="favorite-list">
+            <div *ngFor="let f of tweetslist" class="col s12">
+              <div class="card">
+                <div class="card-image">
+                  <img class="tweets-image"  src={{f.user.profile_image_url}}>
+                </div>
+                <div class="right-content">
+                  <span class="card-title">{{f.user.name}}</span>
+                  <div class="card-content">
+                    <p>{{f.text}}</p>
+                  </div>
+                  <div class="card-action">
+                    <a href="#">{{f.user.url}}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+</div>
+
+
+
+
         </form>
       </div>
 
+      </div>
+
     </div>
   </div>
 </div>
 
 
-<div class="row">
-
-</div>
 
 
-
-<button class="waves-effect waves-light btn" (click)="favoritesCall()">favorites</button>
-<div class="ewd">
-  <div *ngFor="let item of tweetsdata" class="col s12 m7">
-    <div class="card">
-      <div class="card-image">
-        <img style={width:10px;height:10px;} src={{item.user.profile_image_url}}>
-      </div>
-      <div class="right-content">
-        <span class="card-title">{{item.user.name}}</span>
-        <div class="card-content">
-          <p>{{item.text}}</p>
-        </div>
-        <div class="card-action">
-          <a href="#">This is a link</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--{{tweetsdata}}-->
-</div>
-<div class="input-field col s12">
-  <input id="h" type="text" [(ngModel)]="updatestatus" [ngModelOptions]="{standalone: true}">
-  <label for="h">update</label>
-  {{updatestatus}}
-</div>
-<button class="waves-effect waves-light btn" (click)="update()">update</button>
-
-<div *ngFor="let i of userpost" class="col s12 m7">
-  <div class="card">
-    <div class="card-image">
-      <img style={width:10px;height:10px;} src={{i.user.profile_image_url}}>
-    </div>
-    <div class="right-content">
-      <span class="card-title">{{i.user.name}}</span>
-      <div class="card-content">
-        <p>{{i.text}}</p>
-        <span>{{i.created_at}}</span>
-      </div>
-      <div class="card-action">
-        <a href="#">This is a link</a>
-      </div>
-    </div>
-  </div>
-</div>
 

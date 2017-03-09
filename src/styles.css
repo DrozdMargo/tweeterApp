@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+.btn-favorite-list {
+  margin-top:50px;
+}
+h1 {
+  color: #26a69a;
+}
+form {
+  width:100%;
+}

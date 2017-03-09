@@ -1,0 +1,23 @@
+<form class="col">
+  <div class="input-field col s12">
+    <input id="username" type="text" [(ngModel)]="searchname" [ngModelOptions]="{standalone: true}">
+    <label for="username">Search by screen_name</label>
+    <button class="waves-effect waves-light btn " (click)="timelineCall()">User Timeline</button>
+    <div *ngFor="let u of timeline" class="col s12">
+      <div class="card">
+        <div class="card-image">
+          <img style={width:10px;height:10px;} src={{u.user.profile_image_url}}>
+        </div>
+        <div class="right-content">
+          <span class="card-title">{{u.user.screen_name}}</span>
+          <div class="card-content">
+            <p>{{u.text}}</p>
+          </div>
+          <div class="card-action">
+            <a href="#">{{u.user.url}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

@@ -18,11 +18,29 @@ export class TwitterService {
     getTweets(): Observable<Tweet[]> {
       let headers = new Headers();
       headers.append('Content-Type', 'application/X-www-form-urlencoded');
-
       return this.http.get('http://localhost:3000/favorites', {headers:headers})
         .map(this.extractTweetData)
         .catch(this.handleError);
   }
+  getTimeline(body: any): Observable<Tweet[]> {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/X-www-form-urlencoded');
+    // let body = JSON.stringify(searchname);
+    return this.http.post('http://localhost:3000/timeline', body, {headers:headers})
+      .map(this.extractTweetData)
+      .catch(this.handleError);
+  }
+
+  getSearch(searchquery): Observable<Tweet[]> {
+    let headers = new Headers();
+   // let queryString =`?search=${searchquery}`;
+    headers.append('Content-Type', 'application/X-www-form-urlencoded');
+    return this.http.get('http://localhost:3000/search'searchquery, {headers:headers})
+      .map(this.extractTweetData)
+      .catch(this.handleError);
+
+  }
+
   private extractTweetData(res: Response) {
     let body = res.json().data;
     console.log(res.json().data);

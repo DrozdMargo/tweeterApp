@@ -1,23 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import {Http, Headers} from "@angular/http";
+import {TwitterService} from "../twitter-service.service";
+import {Tweet} from "../tweets.interface";
 
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.css']
 })
-export class TimelineComponent {
-  searchname;
-  timeline;
-  constructor(private http: Http) {}
+export class TimelineComponent  {
+  public searchname;
+  errorMessage: string;
+  tweets: Tweet[];
+
+  constructor(private _TwitterService: TwitterService) {}
+
+
 
   timelineCall() {
-    var headers = new Headers();
-    var searchname = 'query=' + this.searchname;
-    headers.append('Content-Type', 'application/X-www-form-urlencoded');
-    this.http.post('http://localhost:3000/timeline', searchname, {headers: headers}).subscribe((res) => {
-      this.timeline = res.json().data;
-      console.log(this.timeline);
-    });
+    let searchname = 'query=' + this.searchname;
+    this._TwitterService.getTimeline(searchname)
+      .subscribe(
+        tweets => this.tweets = tweets,
+        error => this.errorMessage = <any>error);
   }
+
+
+
 }
+
+

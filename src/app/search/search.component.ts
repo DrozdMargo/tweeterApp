@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {Headers, Http} from "@angular/http";
+import {Component, OnInit, Input} from '@angular/core';
+import {Tweet} from "../tweets.interface";
+import {TwitterService} from "../twitter-service.service";
 
 @Component({
   selector: 'app-search',
@@ -7,21 +8,20 @@ import {Headers, Http} from "@angular/http";
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
-  searchquery = '';
-  searchdata;
 
-  constructor(private http: Http) {
-  }
+  @Input() searchquery: any;
+
+  errorMessage: string;
+  tweets: Tweet[];
+  constructor(private _TwitterService: TwitterService) {}
 
   searchCall() {
-    var headers = new Headers();
-    var searchterm = 'query=' + this.searchquery;
-
-    headers.append('Content-Type', 'application/X-www-form-urlencoded');
-
-    this.http.post('http://localhost:3000/search', searchterm, {headers: headers}).subscribe((res) => {
-      this.searchdata = res.json().data.statuses;
-    });
+    let searchquery = 'query=' + this.searchquery;
+    this._TwitterService.getSearch(searchquery)
+      .subscribe(
+        tweets => this.tweets = tweets,
+        error =>  this.errorMessage = <any>error);
+    console.log(this.tweets);
   }
 
 }

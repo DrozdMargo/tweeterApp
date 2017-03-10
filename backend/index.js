@@ -18,8 +18,7 @@ var client = new Twitter({
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 
-app.get("/search", function ( req, res) {
-
+app.post("/search", function ( req, res) {
   client.get('search/tweets', {q: req.body.query}, function (error, tweets) {
     res.json({
       data: tweets

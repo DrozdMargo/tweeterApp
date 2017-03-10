@@ -1,7 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Tweet} from "../tweets.interface";
 import {TwitterService} from "../twitter-service.service";
-import {Response} from "@angular/http";
 
 @Component({
   selector: 'app-search',

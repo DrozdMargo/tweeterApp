@@ -3,23 +3,23 @@
     <input id="hashtags" type="text" [(ngModel)]="searchquery" [ngModelOptions]="{standalone: true}">
     <label for="hashtags">Search by hashtags</label>
     <button class="waves-effect waves-light btn" (click)="searchCall(searchquery)">Search</button>
-<!--{{tweets}}-->
-    <div *ngFor="let i of tweets" class="col s12">
-      <div class="card">
-        <div class="card-image">
-          <img src={{i.user.profile_image_url}}>
-        </div>
-        <div class="right-content">
-          <!--<span class="card-title">{{item.user.name}}</span>-->
-          <div class="card-content">
-            <p>{{i.text}}</p>
-            <span>{{i.created_at}}</span>
-          </div>
-          <div class="card-action">
-            <a href="#">{{i.source}}</a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!--{{tweets}}-->
+    <!--<div *ngFor="let i of tweets" class="col s12">-->
+      <!--<div class="card">-->
+        <!--<div class="card-image">-->
+          <!--<img src={{i.user.profile_image_url}}>-->
+        <!--</div>-->
+        <!--<div class="right-content">-->
+          <!--&lt;!&ndash;<span class="card-title">{{item.user.name}}</span>&ndash;&gt;-->
+          <!--<div class="card-content">-->
+            <!--<p>{{i.text}}</p>-->
+            <!--<span>{{i.created_at}}</span>-->
+          <!--</div>-->
+          <!--<div class="card-action">-->
+            <!--<a href="#">{{i.source}}</a>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
   </div>
 </form>

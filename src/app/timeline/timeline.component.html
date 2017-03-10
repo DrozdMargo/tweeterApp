@@ -2,8 +2,8 @@
   <div class="input-field col s12">
     <input id="username" type="text" [(ngModel)]="searchname" [ngModelOptions]="{standalone: true}">
     <label for="username">Search by screen_name</label>
-    <button class="waves-effect waves-light btn " (click)="timelineCall()">User Timeline</button>
-    <div *ngFor="let u of timeline" class="col s12">
+    <button class="waves-effect waves-light btn " (click)="timelineCall(searchname)">User Timeline</button>
+    <div *ngFor="let u of tweets" class="col s12">
       <div class="card">
         <div class="card-image">
           <img style={width:10px;height:10px;} src={{u.user.profile_image_url}}>

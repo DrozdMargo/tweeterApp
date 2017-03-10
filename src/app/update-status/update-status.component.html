@@ -1,27 +1,9 @@
 <form class="col">
   <div class="input-field col s12">
-    <input id="h" type="text" [(ngModel)]="updatestatus" [ngModelOptions]="{standalone: true}">
+    <input id="h" type="text" [(ngModel)]="userpost" [ngModelOptions]="{standalone: true}">
     <label for="h">enter tweet for update status</label>
 
-    <button class="waves-effect waves-light btn" (click)="update()">update</button>
-
-    <!--<div *ngFor="let i of userpost" class="col s12">-->
-    <!--<div class="card">-->
-    <!--<div class="card-image">-->
-    <!--<img style={width:10px;height:10px;} src={{i.user.profile_image_url}}>-->
-    <!--</div>-->
-    <!--<div class="right-content">-->
-    <!--<span class="card-title">{{i.user.name}}</span>-->
-    <!--<div class="card-content">-->
-    <!--<p>{{i.text}}</p>-->
-    <!--<span>{{i.created_at}}</span>-->
-    <!--</div>-->
-    <!--<div class="card-action">-->
-    <!--<a href="#">This is a link</a>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
+    <button class="waves-effect waves-light btn" (click)="updateStatus(userpost)">update</button>
 
   </div>
 </form>

@@ -8,24 +8,17 @@ import {Tweet} from "../tweets.interface";
   styleUrls: ['./timeline.component.css']
 })
 export class TimelineComponent  {
-  public searchname;
+  searchname;
   errorMessage: string;
   tweets: Tweet[];
 
   constructor(private _TwitterService: TwitterService) {}
 
-
-
-  timelineCall() {
-    let searchname = 'query=' + this.searchname;
+  timelineCall(searchname) {
     this._TwitterService.getTimeline(searchname)
       .subscribe(
         tweets => this.tweets = tweets,
         error => this.errorMessage = <any>error);
   }
-
-
-
 }
-
 

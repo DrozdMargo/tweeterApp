@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 
 app.post("/search", function ( req, res) {
-  client.get('search/tweets', {q: req.body.query}, function (error, tweets) {
+   client.get('search/tweets', {q: req.body.query}, function (error, tweets) {
     res.json({
       data: tweets
 
@@ -37,7 +37,6 @@ app.get("/favorites", function (req, res) {
 
 
 app.post("/update", function (req, res) {
-
   client.post('statuses/update', {status: req.body.status}, function (error, tweets) {
     res.json({
       data: tweets

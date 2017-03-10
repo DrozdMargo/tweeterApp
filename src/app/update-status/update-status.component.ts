@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Http, Headers} from "@angular/http";
+import {TwitterService} from "../twitter-service.service";
+import {Tweet} from "../tweets.interface";
 
 @Component({
   selector: 'app-update-status',
@@ -7,21 +8,15 @@ import {Http, Headers} from "@angular/http";
   styleUrls: ['./update-status.component.css']
 })
 export class UpdateStatusComponent {
-  updatestatus;
   userpost;
-  constructor(private http: Http) {}
+  errorMessage: string;
+  tweets: Tweet[];
+  constructor(private _TwitterService: TwitterService) {}
 
-  update(){
-    var headers = new Headers();
-    var searchterm = 'status='  + this.updatestatus;
-
-    headers.append('Content-Type', 'application/X-www-form-urlencoded');
-
-    this.http.post('http://localhost:3000/update', searchterm, {headers: headers}).subscribe((res) => {
-
-      this.userpost = res.json().data;
-      console.log(this.userpost);
-    });
+  updateStatus(userpost){
+    this._TwitterService.updateTweet(userpost)
+      .subscribe(
+        tweets => this.tweets = tweets,
+        error =>  this.errorMessage = <any>error);
   }
-
 }

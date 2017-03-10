@@ -1,6 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Tweet} from "../tweets.interface";
 import {TwitterService} from "../twitter-service.service";
+import {Response} from "@angular/http";
 
 @Component({
   selector: 'app-search',
@@ -9,19 +10,15 @@ import {TwitterService} from "../twitter-service.service";
 })
 export class SearchComponent {
 
-  @Input() searchquery: any;
-
+  searchquery;
   errorMessage: string;
   tweets: Tweet[];
   constructor(private _TwitterService: TwitterService) {}
 
-  searchCall() {
-    let searchquery = 'query=' + this.searchquery;
+  searchCall(searchquery) {
     this._TwitterService.getSearch(searchquery)
       .subscribe(
         tweets => this.tweets = tweets,
         error =>  this.errorMessage = <any>error);
-    console.log(this.tweets);
   }
-
 }

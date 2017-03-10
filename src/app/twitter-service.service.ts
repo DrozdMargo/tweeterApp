@@ -10,6 +10,7 @@ import {User} from "./user.interface";
 @Injectable()
 export class TwitterService {
 
+
   constructor( private http:Http) { }
 
 
@@ -19,7 +20,7 @@ export class TwitterService {
       let headers = new Headers();
       headers.append('Content-Type', 'application/X-www-form-urlencoded');
       return this.http.get('http://localhost:3000/favorites', {headers:headers})
-        .map(this.extractTweetData)
+        .map(this.extractTweetDataFavorites)
         .catch(this.handleError);
   }
   getTimeline(body: any): Observable<Tweet[]> {
@@ -33,18 +34,22 @@ export class TwitterService {
 
   getSearch(searchquery): Observable<Tweet[]> {
     let headers = new Headers();
-   // let queryString =`?search=${searchquery}`;
+    const queryString =`query=${searchquery}`;
     headers.append('Content-Type', 'application/X-www-form-urlencoded');
-    return this.http.get('http://localhost:3000/search'searchquery, {headers:headers})
+    return this.http.post('http://localhost:3000/search', queryString, {headers:headers})
       .map(this.extractTweetData)
       .catch(this.handleError);
 
   }
 
   private extractTweetData(res: Response) {
-    let body = res.json().data;
-    console.log(res.json().data);
+    let body = res.json().data.statuses;
+    console.log(body);
     return body || {};
+  }
+  private extractTweetDataFavorites(res: Response) {
+    let body = res.json().data;
+     return body || {};
   }
 
   //

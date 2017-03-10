@@ -27,16 +27,14 @@ export class TwitterService {
   getSearch(searchquery): Observable<Tweet[]> {
     const queryString =`query=${searchquery}`;
     return this.http.post('http://localhost:3000/search', queryString, {headers:this.getHeaders()})
-      .map(this.extractTweetDataFavorites)
+      .map(this.extractTweetData)
       .catch(this.handleError);
-
   }
   updateTweet(userpost): Observable<Tweet[]> {
     const queryString =`status=${userpost}`;
     return this.http.post('http://localhost:3000/update', queryString, {headers:this.getHeaders()})
       .map(this.extractTweetData)
       .catch(this.handleError);
-
   }
   private getHeaders(){
     let headers = new Headers();

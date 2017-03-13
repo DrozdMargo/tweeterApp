@@ -9,3 +9,10 @@ h1, h2 {
 form {
   width:100%;
 }
+.card-image {
+  width: 75px;
+  height: 75px;
+}
+.card-image img {
+  padding: 5px;
+}

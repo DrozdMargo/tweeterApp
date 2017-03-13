@@ -2,8 +2,8 @@
   <div class="input-field col s12">
     <input id="h" type="text" [(ngModel)]="userpost" [ngModelOptions]="{standalone: true}">
     <label for="h">enter tweet for update status</label>
-
+<div *ngIf="userpost">
     <button class="waves-effect waves-light btn" (click)="updateStatus(userpost)">update</button>
-
+</div>
   </div>
 </form>
